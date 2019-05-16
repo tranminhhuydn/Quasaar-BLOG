@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ../partials/header %>
+
+    <body>
+        <% include ../partials/nav %>
+
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="my-4">
+                            <%=post.header%>
+                        </h1>
+
+                        <small>
+                            <% if(login) { %>
+                                (<a href="/edit/<%=post.id%>">düzenle</a>) |
+                                (<a href="/delete/<%=post.id%>">sil</a>) |
+                                <% } %> ekleyen: <%=post.addedBy%> |  oluşturma tarihi: <%=post.createdAt%> <br>
+                            </small>
+
+                        <p class="lead text-justify">
+                            <%-post.content%>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <% include ../partials/footer %>
+    </body>
+
+</html>

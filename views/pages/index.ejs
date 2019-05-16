@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ../partials/header %>
+
+    <body>
+        <% include ../partials/nav %>
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="my-4"></h1>
+
+                    <%  for(let post of posts) {  %>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h4 class="card-title"><%=post.header%></h4>
+                                <p class="card-text"><%-post.content ? post.content.substring(0, 150) : ''%>
+                                <% if(post.content && post.content.length > 150) { %>...</p>
+                                "><a class="btn-link" href="/more/<%=post.id%>">Daha fazla oku</a>
+                                        
+                                <% } else { %> </p> <% } %>
+                            </div>
+                            <div class="card-footer text-muted"> #<%=post.id%> | <%=post.addedBy%>
+                                <% if(login) { %>
+                                    | (<a href="/edit/<%=post.id%>">Düzenle</a>)
+                                    | (<a href="/delete/<%=post.id%>">sil</a>)
+                                <% } %> | oluşturma tarihi <%=post.createdAt%>,
+                            </div>
+                         </div>
+                    <% } %>
+
+                    <nav class="float-right">
+                        <ul class="pagination">
+                            <% for(let i = 0; i<postCount;i+=10) { %>
+                            <li class="page-item">
+                                <a class="page-link" href="/<%=i?i:''%>"><%=(i/10)+1%></a>
+                            </li>
+                            <% } %>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <% include ../partials/footer %>
+    </body>
+
+</html>
